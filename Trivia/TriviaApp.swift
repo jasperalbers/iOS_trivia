@@ -12,6 +12,7 @@ struct TriviaApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.font, Font.system(.body, design: .rounded))
         }
     }
 }
