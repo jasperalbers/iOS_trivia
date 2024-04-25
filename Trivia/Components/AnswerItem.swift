@@ -36,7 +36,7 @@ struct AnswerItem: View {
         .foregroundStyle(.primary)
         .background(isSelected ? (answer.isCorrect ? .green : .red) : (triviaManager.answerSelected ? (answer.isCorrect ? .green : Color(.secondarySystemGroupedBackground)) : Color(.secondarySystemGroupedBackground)))
         .cornerRadius(30)
-        .shadow(color: isSelected ? (answer.isCorrect ? .green : .red) : .secondary, radius: 5, x: 0.5, y: 0.5)
+        .shadow(color: isSelected ? (answer.isCorrect ? .green : .red) : .black.opacity(0.4), radius: 5, x: 0.5, y: 0.5)
         .onTapGesture {
             if !triviaManager.answerSelected {
                 isSelected = true

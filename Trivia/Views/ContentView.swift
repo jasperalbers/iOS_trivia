@@ -81,12 +81,13 @@ struct ContentView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         
+                        Spacer()
+                        
                         Picker("Category", selection: $selectedCategory) {
                             ForEach(["Any"] + Array(categories.keys).sorted(), id: \.self) { cat in
                                 Text(cat).tag(cat)
                             }
                         }
-                        .frame(maxWidth: 80)
                         .padding(10)
                         
                     }

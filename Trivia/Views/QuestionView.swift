@@ -37,12 +37,18 @@ struct QuestionView: View {
                         .environmentObject(triviaManager)
                 }
             }
-            Button {
-                triviaManager.goToNextQuestion()
-            } label: {
-                PillButton(text: "Next", background: triviaManager.answerSelected ? Color("AccentColor") : .secondary)
+            
+            if triviaManager.answerSelected {
+                Button {
+                    triviaManager.goToNextQuestion()
+                } label: {
+                    PillButton(text: "Next", background: Color("AccentColor"))
+                }
+                .disabled(!triviaManager.answerSelected)
+                .frame(width: 200, height: 50)
+            } else {
+                Color.clear.frame(width: 200, height: 50)
             }
-            .disabled(!triviaManager.answerSelected)
                         
             Spacer()
  
