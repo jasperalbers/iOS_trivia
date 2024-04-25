@@ -11,7 +11,7 @@ class TriviaManager: ObservableObject {
     private(set) var trivia: [Trivia.Result] = []
     @Published private(set) var numQuestions = 0
     @Published private(set) var questionIndex = 0
-    @Published private(set) var reachedEnd = false
+    @Published var reachedEnd = false
     @Published private(set) var answerSelected = false
     @Published private(set) var question: AttributedString = ""
     @Published private(set) var answerChoices: [Answer] = []

@@ -17,7 +17,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                VStack(spacing: 40) {
+                VStack(spacing: 20) {
                     VStack(alignment: .leading, spacing: 20) {
                         Text("Trivia Game")
                             .accentTitle()
@@ -30,11 +30,25 @@ struct ContentView: View {
                     
                     Spacer()
               
-                    VStack(spacing: 0) {
-                        Text("How many questions?")
-                            .foregroundStyle(.primary)
-                            .font(.system(size: 18, weight: .regular, design: .rounded))
-                            .padding()
+                    HStack(spacing: 0) {
+                
+                        VStack(alignment: .leading) {
+                            Image(systemName: "number.circle.fill")
+                                .font(.system(size: 40))
+                                .padding(.leading, 15)
+                                .padding(.top, 15)
+                                .foregroundStyle(Color("AccentColor"))
+                            
+                            Spacer()
+                            
+                            Text("How many questions?")
+                                .foregroundStyle(.secondary)
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .padding(.leading, 20)
+                                .padding(.bottom, 15)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
                         Picker("Amount", selection: $selectedAmount) {
                             ForEach(1...50, id: \.self) { num in
                                 Text("\(num)").tag(num)
@@ -42,35 +56,64 @@ struct ContentView: View {
                         }
                         .frame(maxWidth: 70)
                         .pickerStyle(.wheel)
+                        .padding(10)
                         
                     }
-                    .frame(width: 330, height: 150)
-                    .background()
-                    .cornerRadius(25)
-                    .shadow(color: .secondary, radius: 5)
+                    .frame(width: 330, height: 120)
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .cornerRadius(15)
                     
-                    VStack(spacing: 20) {
-                        Text("Which category?")
-                            .foregroundStyle(.primary)
-                            .font(.system(size: 18, weight: .regular, design: .rounded))
+                    HStack(spacing: 0) {
+                        VStack(alignment: .leading) {
+                            Image(systemName: "tag.circle.fill")
+                                .font(.system(size: 40))
+                                .padding(.leading, 15)
+                                .padding(.top, 15)
+                                .foregroundStyle(Color("AccentColor"))
+                            
+                            Spacer()
+                            
+                            Text("Which category?")
+                                .foregroundStyle(.secondary)
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .padding(.leading, 20)
+                                .padding(.bottom, 15)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
                         Picker("Category", selection: $selectedCategory) {
                             ForEach(["Any"] + Array(categories.keys).sorted(), id: \.self) { cat in
                                 Text(cat).tag(cat)
                             }
                         }
-                        .frame(maxWidth: 330)
+                        .frame(maxWidth: 80)
+                        .padding(10)
                         
                     }
-                    .frame(width: 330, height: 100)
-                    .background()
-                    .cornerRadius(25)
-                    .shadow(color: .secondary, radius: 5)
+                    .frame(width: 330, height: 120)
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .cornerRadius(15)
 
                     
-                    VStack(spacing: 20) {
-                        Text("What difficulty?")
-                            .foregroundStyle(.primary)
-                            .font(.system(size: 18, weight: .regular, design: .rounded))
+                    VStack(spacing: 0) {
+                        VStack(alignment: .leading, spacing: 20) {
+                            
+                            Image(systemName: "flame.circle.fill")
+                                .font(.system(size: 40))
+                                .padding(.leading, 15)
+                                .padding(.top, 15)
+                                .foregroundStyle(Color("AccentColor"))
+                            
+                            Text("What difficulty?")
+                                .foregroundStyle(.secondary)
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .padding(.leading, 20)
+                                .padding(.bottom, 15)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Spacer()
+                        
                         Picker("Difficulty", selection: $selectedDifficulty) {
                             ForEach(difficulties, id: \.self) { diff in
                                 Text(diff).tag(diff)
@@ -78,11 +121,11 @@ struct ContentView: View {
                         }
                         .pickerStyle(.segmented)
                         .frame(maxWidth: 300)
+                        .padding(.bottom, 20)
                     }
-                    .frame(width: 330, height: 120)
-                    .background()
-                    .cornerRadius(25)
-                    .shadow(color: .secondary, radius: 5)
+                    .frame(width: 330, height: 180)
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .cornerRadius(15)
                     
                     NavigationLink {
                         TriviaView(difficulty: $selectedDifficulty, category: $selectedCategory, amount: $selectedAmount)
@@ -100,6 +143,7 @@ struct ContentView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding()
+                .background(Color(.systemGroupedBackground))
             }
         }
     }

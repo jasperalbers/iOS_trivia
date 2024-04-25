@@ -12,6 +12,7 @@ struct TriviaView: View {
     @Binding var category: String
     @Binding var amount: Int
     @EnvironmentObject var triviaManager: TriviaManager
+    @Environment(\.presentationMode) var presentationMode
     
     var resultColor: Color {
         switch (Double(triviaManager.score) / Double(triviaManager.numQuestions)) {
@@ -31,7 +32,7 @@ struct TriviaView: View {
     }
     
     var body: some View {
-        if !triviaManager.reachedEnd {
+        if triviaManager.reachedEnd {
             VStack(spacing: 60) {
                 Text("Your result:")
                     .accentTitle(color: resultColor)
@@ -41,11 +42,9 @@ struct TriviaView: View {
                 
                 HStack(spacing: 20) {
                     Button {
-                        Task.init {
-                            await triviaManager.fetchTrivia(difficulty: difficulty, category: category, amount: amount)
-                        }
+                        self.presentationMode.wrappedValue.dismiss()
                     } label: {
-                        PillButton(text: "Back", background: Color(.tertiarySystemFill))
+                        PillButton(text: "Back", background: Color(.secondarySystemGroupedBackground), foreground: .primary)
                     }
                     
                     
@@ -62,6 +61,11 @@ struct TriviaView: View {
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .foregroundStyle(resultColor)
+            .toolbar(.hidden)
+            .background(Color(.systemGroupedBackground))
+            .onDisappear {
+                triviaManager.reachedEnd = false
+            }
             
         } else {
             QuestionView()

@@ -50,6 +50,7 @@ struct QuestionView: View {
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar(.hidden)
+        .background(Color(.systemGroupedBackground))
     }
 }
 

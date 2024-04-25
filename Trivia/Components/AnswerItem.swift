@@ -34,7 +34,7 @@ struct AnswerItem: View {
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         .foregroundStyle(.primary)
-        .background(isSelected ? (answer.isCorrect ? .green : .red) : (triviaManager.answerSelected ? (answer.isCorrect ? .green : Color(.systemBackground)) : Color(.systemBackground)))
+        .background(isSelected ? (answer.isCorrect ? .green : .red) : (triviaManager.answerSelected ? (answer.isCorrect ? .green : Color(.secondarySystemGroupedBackground)) : Color(.secondarySystemGroupedBackground)))
         .cornerRadius(30)
         .shadow(color: isSelected ? (answer.isCorrect ? .green : .red) : .secondary, radius: 5, x: 0.5, y: 0.5)
         .onTapGesture {

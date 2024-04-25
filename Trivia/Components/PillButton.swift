@@ -10,15 +10,17 @@ import SwiftUI
 struct PillButton: View {
     var text: String
     var background: Color = Color("AccentColor")
+    var foreground: Color = Color(.white)
+    var shadowRadius: CGFloat = 10.0
     
     var body: some View {
         Text(text)
-            .foregroundColor(.white)
+            .foregroundColor(foreground)
             .padding()
             .padding(.horizontal)
             .background(background)
             .cornerRadius(30)
-            .shadow(radius: 10)
+            .shadow(radius: shadowRadius)
             .font(.system(size: 18, design: .rounded))
             }
 }
